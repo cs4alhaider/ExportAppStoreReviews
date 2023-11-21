@@ -8,6 +8,7 @@ from datetime import datetime
 key_id = 'YOUR_KEY_ID'
 issuer_id = 'YOUR_ISSUER_ID'
 private_key_path = './private.p8'
+app_id = 'THE_APP_ID_YOU_WANT_THE_REVIEWS_FOR'
 
 # Loading the private key from a file
 with open(private_key_path, 'r') as key_file:
@@ -31,7 +32,7 @@ payload = {
 token = jwt.encode(payload, private_key, algorithm=algorithm, headers=header)
 
 # Defining the base URL for the API request
-base_url = f'https://api.appstoreconnect.apple.com/v1/apps/375539359/customerReviews?limit=200'
+base_url = f'https://api.appstoreconnect.apple.com/v1/apps/{app_id}/customerReviews?limit=200'
 headers = {
     'Authorization': f'Bearer {token}',
     'Content-Type': 'application/json'
